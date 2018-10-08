@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">StreamingApp</string>
+    <string name="item_title1">Settings</string>
+    <string name="item_title2">Favorites</string>
+    <string name="test_title">test</string>
+    <string name="musicTitle">Favorites Library</string>
+    <string name="favoritesTitle">Favorites</string>
+    <string name="station_title">Music Stations</string>
+    <string name="news_title">New Releases</string>
+    <string name="nav_header">Streaming Options</string>
+    <string name="title_songs">Songs</string>
+    <string name="title_albums">Albums</string>
+    <string name="title_artists">Artists</string>
+</resources>
