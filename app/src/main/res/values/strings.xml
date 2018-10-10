@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">StreamingApp</string>
     <string name="item_title1">Settings</string>
-    <string name="item_title2">Favorites</string>
+    <string name="item_title2">About</string>
     <string name="test_title">test</string>
     <string name="musicTitle">Favorites Library</string>
     <string name="favoritesTitle">Favorites</string>
