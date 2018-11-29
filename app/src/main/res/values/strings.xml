@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">StreamingApp</string>
+    <string name="app_name">MusicApp</string>
     <string name="item_title1">Settings</string>
     <string name="item_title2">About</string>
     <string name="test_title">test</string>
