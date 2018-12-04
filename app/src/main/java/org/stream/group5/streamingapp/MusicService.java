@@ -1,12 +1,16 @@
 package org.stream.group5.streamingapp;
 
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
 import android.app.Service;
 import android.content.ContentUris;
+import android.content.Context;
 import android.content.Intent;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Binder;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.os.PowerManager;
@@ -34,6 +38,7 @@ public class MusicService extends Service implements MediaPlayer.OnPreparedListe
     private static final int NOTIFY_ID=1;
     private boolean shuffle=false;
     private Random rand;
+    private NotificationManager mNotificationManager;
 
     public void onCreate()
     {
@@ -100,17 +105,27 @@ public class MusicService extends Service implements MediaPlayer.OnPreparedListe
         PendingIntent pendInt = PendingIntent.getActivity(this, 0,
                 notIntent, PendingIntent.FLAG_UPDATE_CURRENT);
 
-        Notification.Builder builder = new Notification.Builder(this);
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(getApplicationContext(),"music playing");
 
         builder.setContentIntent(pendInt)
                 .setSmallIcon(R.drawable.play)
                 .setTicker(songTitle)
                 .setOngoing(true)
-                .setContentTitle("Playing")
+                .setContentTitle("The music app is open")
                 .setContentText(songTitle);
-        Notification not = builder.build();
 
-        startForeground(NOTIFY_ID, not);
+        mNotificationManager = (NotificationManager) this.getBaseContext().getSystemService(Context.NOTIFICATION_SERVICE);
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            String channelId = "channelid";
+            NotificationChannel channel = new NotificationChannel(channelId,
+                    "vodo magic",
+                    NotificationManager.IMPORTANCE_DEFAULT);
+            mNotificationManager.createNotificationChannel(channel);
+            builder.setChannelId(channelId);
+        }
+
+        startForeground(NOTIFY_ID, builder.build());
     }
     public void playSong()
     {
