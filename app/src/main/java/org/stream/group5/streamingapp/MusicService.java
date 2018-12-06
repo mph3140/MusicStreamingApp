@@ -35,6 +35,7 @@ public class MusicService extends Service implements MediaPlayer.OnPreparedListe
     private int songPosn;
     private final IBinder musicBind = new MusicBinder();
     private String songTitle="";
+    private String songArtist="";
     private static final int NOTIFY_ID=1;
     private boolean shuffle=false;
     private Random rand;
@@ -111,8 +112,8 @@ public class MusicService extends Service implements MediaPlayer.OnPreparedListe
                 .setSmallIcon(R.drawable.play)
                 .setTicker(songTitle)
                 .setOngoing(true)
-                .setContentTitle("The music app is open")
-                .setContentText(songTitle);
+                .setContentTitle("Playing " + songTitle)
+                .setContentText("By " + songArtist);
 
         mNotificationManager = (NotificationManager) this.getBaseContext().getSystemService(Context.NOTIFICATION_SERVICE);
 
@@ -133,6 +134,7 @@ public class MusicService extends Service implements MediaPlayer.OnPreparedListe
         //get song
         Song playSong = songs.get(songPosn);
         songTitle=playSong.getTitle();
+        songArtist=playSong.getArtist();
         //get id
         long currSong = playSong.getID();
         //set uri

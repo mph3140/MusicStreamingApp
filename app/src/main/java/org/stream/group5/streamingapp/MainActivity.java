@@ -6,6 +6,7 @@ import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.net.Uri;
@@ -27,11 +28,15 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ListView;
 import android.widget.MediaController;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.LinkedList;
+
+import static org.stream.group5.streamingapp.SettingActivity.PREFS_NAME;
+import static org.stream.group5.streamingapp.SettingActivity.PREF_DARK_THEME;
 
 public class MainActivity extends AppCompatActivity implements MediaController.MediaPlayerControl {
 
@@ -48,6 +53,12 @@ public class MainActivity extends AppCompatActivity implements MediaController.M
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        SharedPreferences preferences = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
+        boolean useDarkTheme = preferences.getBoolean(PREF_DARK_THEME, false);
+        if(useDarkTheme)
+        {
+            setTheme(R.style.AppTheme_Dark_NoActionBar);
+        }
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
@@ -81,10 +92,18 @@ public class MainActivity extends AppCompatActivity implements MediaController.M
         Toolbar toolbar = findViewById(R.id.toolbar);
 
         setSupportActionBar(toolbar);
+
         /*
         ActionBar actionbar = getSupportActionBar();
         actionbar.setDisplayHomeAsUpEnabled(true);
         actionbar.setHomeAsUpIndicator(R.drawable.menu_icon);*/
+
+    }
+    @Override
+    protected void onRestart()
+    {
+        recreate();
+        super.onRestart();
 
     }
        /* mDrawerLayout = findViewById(R.id.drawer_layout);
@@ -134,20 +153,45 @@ public class MainActivity extends AppCompatActivity implements MediaController.M
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case android.R.id.home:
-                mDrawerLayout.openDrawer(GravityCompat.START);
-                return true;
-            case R.id.action_shuffle:
-                musicSrv.setShuffle();
-                break;
-            case R.id.action_end:
-                stopService(playIntent);
-                musicSrv = null;
-                System.exit(0);
-                break;
+//        switch (item.getItemId()) {
+//            case android.R.id.home:
+//                mDrawerLayout.openDrawer(GravityCompat.START);
+//                return true;
+//            case R.id.action_shuffle:
+//                musicSrv.setShuffle();
+//                break;
+//            case R.id.action_end:
+//                stopService(playIntent);
+//                musicSrv = null;
+//                System.exit(0);
+//                break;
+//        }
+        int id = item.getItemId();
+
+        //noinspection SimplifiableIfStatement
+        if (id == R.id.option_settings) {
+            launchSettingActivity(findViewById(R.id.option_settings));
+            return true;
         }
+        else if(id == R.id.option_about)
+        {
+            launchAboutActivity(findViewById(R.id.option_about));
+            return true;
+        }
+
         return super.onOptionsItemSelected(item);
+    }
+    public void launchSettingActivity(View view)
+    {
+        Intent intent = new Intent(this, SettingActivity.class);
+        startActivity(intent);
+
+    }
+    public void launchAboutActivity(View view)
+    {
+        Intent intent = new Intent(this, AboutActivity.class);
+        startActivity(intent);
+
     }
     //connect to the service
     private ServiceConnection musicConnection = new ServiceConnection(){

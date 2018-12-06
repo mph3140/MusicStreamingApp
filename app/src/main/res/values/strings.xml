@@ -11,4 +11,9 @@
     <string name="title_songs">Songs</string>
     <string name="title_albums">Albums</string>
     <string name="title_artists">Artists</string>
+    <string name="switch_theme">Switch Theme</string>
+    <string name="settings_label">Settings</string>
+    <string name="about_descr">This is a music app that used locally stored music files. Created by Group 5
+    for our Android app project.</string>
+    <string name="about_label">About</string>
 </resources>

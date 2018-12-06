@@ -1,13 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
-        <!-- Customize your theme here. -->
+
+    <!-- Default Light Theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="primaryButtonTheme">
+        </item>
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
-        <item name="android:textColorSecondary">@android:color/black</item>
-        <item name="android:colorControlNormal">@android:color/white</item>
+        <item name="primaryTextColor">@color/primaryText</item>
+    </style>
+
+    <style name="AppTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <style name="AppTheme.Dark" parent="Theme.AppCompat">
+        <item name="primaryButtonTheme">
+        </item>
+        <item name="colorPrimary">@color/darkColorPrimary</item>
+        <item name="colorPrimaryDark">@color/darkColorPrimary</item>
+        <item name="colorAccent">@color/darkColorAccent</item>
+        <item name="primaryTextColor">@color/darkPrimaryText</item>
+        <!-- Items below are for if I ever want to color the buttons-->
+    </style>
+
+    <style name="AppTheme.Dark.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="AppTheme.Dark.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+    <style name="AppTheme.Dark.PopupOverlay" parent="ThemeOverlay.AppCompat" />
+
+    <style name="Widget.Button.Primary" parent="Widget.AppCompat.Button">
+        <item name="colorButtonNormal">?attr/buttonNormalColor</item>
+        <item name="android:colorControlHighlight">
+            ?attr/buttonHighlightColor
+        </item>
+        <item name="android:textColor">?attr/buttonTextColor</item>
     </style>
 
     <style name="song_title">
