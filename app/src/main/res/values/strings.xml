@@ -16,4 +16,6 @@
     <string name="about_descr">This is a music app that used locally stored music files. Created by Group 5
     for our Android app project.</string>
     <string name="about_label">About</string>
+    <string name="name">Name:</string>
+    <string name="artist">Artist:</string>
 </resources>
