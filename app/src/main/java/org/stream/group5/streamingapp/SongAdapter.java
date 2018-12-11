@@ -83,6 +83,9 @@ public class SongAdapter extends RecyclerView.Adapter<SongAdapter.SongViewHolder
             int songPosn = getLayoutPosition();
             final Song playSong = songs.get(songPosn);
 
+            final EditText title = (EditText) popupView.findViewById(R.id.titleText);
+            final EditText artist = (EditText) popupView.findViewById(R.id.artistText);
+
             AlertDialog.Builder builder = new AlertDialog.Builder(activity);
             builder.setView(popupView)
             .setPositiveButton("Save", new DialogInterface.OnClickListener() {
@@ -94,7 +97,7 @@ public class SongAdapter extends RecyclerView.Adapter<SongAdapter.SongViewHolder
             .setNegativeButton("Discogs Search", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
-                    DiscogsKt.srch(playSong.getTitle(), playSong.getArtist(), activity);
+                    DiscogsKt.srch(title.getText().toString(), artist.getText().toString(), activity);
                 }
             });
 
@@ -102,8 +105,6 @@ public class SongAdapter extends RecyclerView.Adapter<SongAdapter.SongViewHolder
             builder.create();
 
             // pass song title and name to textboxes on alert dialog
-            EditText title = (EditText) popupView.findViewById(R.id.titleText);
-            EditText artist = (EditText) popupView.findViewById(R.id.artistText);
             title.setText(playSong.getTitle());
             artist.setText(playSong.getArtist());
 
