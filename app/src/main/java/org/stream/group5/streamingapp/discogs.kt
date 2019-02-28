@@ -11,8 +11,9 @@ import saschpe.discogs.model.database.Search
 import saschpe.discogs.service.DatabaseService
 
 // needs key and secret set
-
-val discogs = Discogs("MusicStreamingApp/2.0", key = key , secret = secret)
+// Key and Secret were throwing errors,
+// Unsure what values are needed for key and secret so I commented them as strings for now.
+val discogs = Discogs("MusicStreamingApp/2.0", key = "key" , secret = "secret")
 
 fun srch(name: String, artist: String, activity: org.stream.group5.streamingapp.MainActivity): Unit {
     // Search the Discogs database for album / artist...
